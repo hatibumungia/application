@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form [formGroup]="forms" (ngSubmit)="submit(forms.value)">
+                <div class="form-group">
+                    <label for="fname">First Name</label>
+                    <input type="text" formControlName="fname" class="form-control" id="fname" name="fname" required>
+                </div>
+                <div class="form-group">
+                    <label for="mname">Middle Name</label>
+                    <input type="text" formControlName="mname" class="form-control" id="mname" name="mname">
+                </div>
+                <div class="form-group">
+                    <label for="lname">Last Name</label>
+                    <input type="text" formControlName="lname" class="form-control" id="lname" name="lname">
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select formControlName="gender" class="form-control" id="gender" name="gender">
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let student of students; let num = index">
+                   <td>{{num+1}}</td>
+                   <td>{{student.fname}} {{student.mname}}{{student.lname}}</td>
+                    <td>
+                        <button class="btn btn-danger" (click)="delete(student.id)">delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="mt-5">
+        Values : <pre>{{forms.value | json}}</pre>
+    </div>
+</div>
